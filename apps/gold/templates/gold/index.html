@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    Your Gold: <p>{{ request.session.gold }}</p>
+    <form action='/process' method='post'>
+        {% csrf_token %}
+        <h3>Farm</h3>
+        <h5>(earns 10-20 gold)</h5>
+        <input type='hidden' name='name' value='farm'>
+        <input type='submit' value='Find Gold!'>
+    </form>
+    <form action='/process' method='post'>
+        {% csrf_token %}
+        <h3>Cave</h3>
+        <h5>(earns 5-10 gold)</h5>
+        <input type='hidden' name='name' value='cave'>
+        <input type='submit' value='Find Gold!'>
+    </form>
+    <form action='/process' method='post'>
+        {% csrf_token %}
+        <h3>House</h3>
+        <h5>(earns 2-5 gold)</h5>
+        <input type='hidden' name='name' value='house'>
+        <input type='submit' value='Find Gold!'>
+    </form>
+    <form action='/process' method='post'>
+        {% csrf_token %}
+        <h3>Casino</h3>
+        <h5>(earns/takes 0-50 gold)</h5>
+        <input type='hidden' name='name' value='casino'>
+        <input type='submit' value='Find Gold!'>
+    </form><br>
+    <h3>Activities:</h3>
+    {% for x in request.session.log %}
+    <p>{{ x }}</p>
+    {% endfor %}
+</body>
+</html>
